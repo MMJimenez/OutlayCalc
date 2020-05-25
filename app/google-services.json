@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "560945666138",
+    "firebase_url": "https://outlaycalc.firebaseio.com",
+    "project_id": "outlaycalc",
+    "storage_bucket": "outlaycalc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560945666138:android:66d386eca445fbd6fb2063",
+        "android_client_info": {
+          "package_name": "com.example.outlaycalc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560945666138-7evseditlghkialmdhu85fi6ts9qid6r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.outlaycalc",
+            "certificate_hash": "9a687a514ecaeffa0dbdedc0ea3c216b7332e4e6"
+          }
+        },
+        {
+          "client_id": "560945666138-6g619it7q9qp9mm1cjgmm2mukhbuv6pn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTkXwI2qYfdXEPBqkl0pMlcRHo_DSOos4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560945666138-6g619it7q9qp9mm1cjgmm2mukhbuv6pn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
