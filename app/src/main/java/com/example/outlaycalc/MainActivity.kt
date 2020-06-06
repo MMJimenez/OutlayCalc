@@ -1,7 +1,6 @@
 package com.example.outlaycalc
 
 import android.content.Intent
-import android.graphics.drawable.Icon
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +13,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.item_movement.*
 import java.math.BigDecimal
 import java.math.RoundingMode
 
@@ -82,10 +80,4 @@ class MainActivity : AppCompatActivity(), AmountSum {
         txtSumMovements.text = "$decimal €"
         Log.e("miApp", "sumMovements $decimal")
     }
-
-//    override fun AmountSum(money: Double) {
-//        txtSumMovements.text = money.toString()
-//        Log.e("miApp", "sumMovements $money")
-//    }
-
 }

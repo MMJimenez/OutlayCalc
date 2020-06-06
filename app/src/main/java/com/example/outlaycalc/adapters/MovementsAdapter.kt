@@ -1,7 +1,6 @@
 package com.example.outlaycalc.adapters
 
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.Icon
+
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import com.example.outlaycalc.R
 import com.example.outlaycalc.models.Movement
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import kotlinx.android.synthetic.main.item_movement.*
 import kotlinx.android.synthetic.main.item_movement.view.*
 import kotlinx.android.synthetic.main.item_movement.view.iconOutlay
 
