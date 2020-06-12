@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.outlaycalc.AmountSum
+import com.example.outlaycalc.interfaces.AmountSum
 import com.example.outlaycalc.R
+import com.example.outlaycalc.interfaces.EditMovements
 import com.example.outlaycalc.models.Movement
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -19,6 +20,7 @@ class MovementsAdapter(
 ) :
     FirestoreRecyclerAdapter<Movement, MovementsAdapter.MovementsViewHolder>(recyclerOptions) {
 
+    var cell: EditMovements? = null
     var sum: AmountSum? = null
     var sumMovements = 0.0
 
@@ -37,6 +39,9 @@ class MovementsAdapter(
 
         holder.itemView.setOnClickListener {
             val documentId = snapshots.getSnapshot(position).id
+            Log.v("miApp", "se ha pulsado la posicion: $position")
+            cell?.edit(position)
+            Log.v("miApp", "La Celda en el Adapter ${cell?.edit(position).toString()}")
         }
     }
 
@@ -51,11 +56,11 @@ class MovementsAdapter(
                 itemView.iconOutlay.setImageResource(R.drawable.ic_arrow_right)
                 sumMovements += movement.amount!!
                 sum?.sumatory(sumMovements)
-                Log.v("miApp", "La suma es $sumMovements")
+                Log.v("miApp", "La suma es $sumMovements y ${sum?.sumatory(sumMovements).toString()}")
             } else {
                 sumMovements -= movement.amount!!
                 sum?.sumatory(sumMovements)
-                Log.v("miApp", "La suma es $sumMovements")
+                Log.v("miApp", "La suma es $sumMovements y ${sum?.sumatory(sumMovements).toString()}")
             }
 
 

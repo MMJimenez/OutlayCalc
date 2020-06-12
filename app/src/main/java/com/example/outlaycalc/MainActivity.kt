@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.outlaycalc.adapters.MovementsAdapter
+import com.example.outlaycalc.interfaces.AmountSum
+import com.example.outlaycalc.interfaces.EditMovements
 import com.example.outlaycalc.models.Movement
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -16,7 +18,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.math.BigDecimal
 import java.math.RoundingMode
 
-class MainActivity : AppCompatActivity(), AmountSum {
+class MainActivity : AppCompatActivity(),
+    AmountSum, EditMovements {
 
 
     lateinit var auth: FirebaseAuth
@@ -80,4 +83,9 @@ class MainActivity : AppCompatActivity(), AmountSum {
         txtSumMovements.text = "$decimal €"
         Log.e("miApp", "sumMovements $decimal")
     }
+
+    override fun edit(position: Int) {
+        Log.v("miApp", "La celda desde el MainActivity es: $position")
+    }
+
 }
