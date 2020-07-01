@@ -14,6 +14,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_main.*
+import java.math.BigDecimal
+import java.math.RoundingMode
+import kotlin.math.round
 
 class MainActivity : AppCompatActivity() {
 
@@ -113,7 +116,8 @@ class MainActivity : AppCompatActivity() {
                         Log.e(TAG, "Ha entrado por ingress: ${movementObject.amount} money: $money")
                     }
                 }
-                txtSumMovements.text = money.toString()
+                var roundedMoney = BigDecimal(money).setScale(2, RoundingMode.HALF_EVEN)
+                txtSumMovements.text = roundedMoney.toString()
             }
             .addOnFailureListener { exception ->
                 Log.d(TAG, "Error getting documents: ", exception)
