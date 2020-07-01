@@ -41,16 +41,11 @@ class MovementsAdapter(
             itemView.txtDesiption.text = movement.description
             itemView.txtAmount.text = "${movement.amount} €"
 
-//            if (movement.outlay == false) {
-//                itemView.iconOutlay.setImageResource(R.drawable.ic_arrow_right)
-//                sumMovements += movement.amount!!
-//                sum?.sumatory(sumMovements)
-//                Log.v("miApp", "La suma es $sumMovements y ${sum?.sumatory(sumMovements).toString()}")
-//            } else {
-//                sumMovements -= movement.amount!!
-//                sum?.sumatory(sumMovements)
-//                Log.v("miApp", "La suma es $sumMovements y ${sum?.sumatory(sumMovements).toString()}")
-//            }
+            if (!movement.outlay) {
+                itemView.iconOutlay.setImageResource(R.drawable.ic_arrow_right)
+            } else {
+                itemView.iconOutlay.setImageResource(R.drawable.ic_arrow_left)
+            }
 
 
 

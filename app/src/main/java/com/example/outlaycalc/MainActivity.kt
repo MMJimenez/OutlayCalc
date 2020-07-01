@@ -29,10 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        topAppBar.setNavigationOnClickListener {
-            // Handle navigation icon press
-        }
-
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menuLogOut -> {
@@ -60,21 +56,10 @@ class MainActivity : AppCompatActivity() {
         fireAdapter = MovementsAdapter(fireOptions)
         mainRecyclerView.adapter = fireAdapter
 
-        //(fireAdapter as MovementsAdapter).sum = this
-
         floating_action_button.setOnClickListener {
             startActivity(Intent(this, AddMovementActivity::class.java))
-            var dataMovement = db.collection("users").document(auth.currentUser!!.uid)
-
-            Log.v("miApp", "dataMovement: ${dataMovement}")
-
-
         }
-
-        //Add Movements from FireBase to Array
         getCollections()
-
-
     }
 
     override fun onStart() {
@@ -87,18 +72,11 @@ class MainActivity : AppCompatActivity() {
         fireAdapter.stopListening()
     }
 
-    fun totalAmount() {
-        var amountsArray = arrayListOf<Movement>()
-    }
-
     fun getCollections() {
 
         var money: Double = 0.0
 
-        var myMovement: Movement? = null
-        var myMovementsList: MovementsList? = null
-
-        var movementQuery =
+        val movementQuery =
             db.collection("users").document(auth.currentUser!!.uid).collection("movements")
         movementQuery.get()
             .addOnSuccessListener { result ->
@@ -116,8 +94,8 @@ class MainActivity : AppCompatActivity() {
                         Log.e(TAG, "Ha entrado por ingress: ${movementObject.amount} money: $money")
                     }
                 }
-                var roundedMoney = BigDecimal(money).setScale(2, RoundingMode.HALF_EVEN)
-                txtSumMovements.text = roundedMoney.toString()
+                val roundedMoney = BigDecimal(money).setScale(2, RoundingMode.HALF_EVEN)
+                txtSumMovements.text = "$roundedMoney €"
             }
             .addOnFailureListener { exception ->
                 Log.d(TAG, "Error getting documents: ", exception)
