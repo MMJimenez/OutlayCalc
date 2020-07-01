@@ -1,17 +1,19 @@
 package com.example.outlaycalc.adapters
 
+import android.service.autofill.OnClickAction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.outlaycalc.R
+import com.example.outlaycalc.interfaces.CustomItemListener
 import com.example.outlaycalc.models.Movement
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.synthetic.main.item_movement.view.*
 
 class MovementsAdapter(
-    recyclerOptions: FirestoreRecyclerOptions<Movement>
+    recyclerOptions: FirestoreRecyclerOptions<Movement>, val clickAction: CustomItemListener
 ) :
     FirestoreRecyclerAdapter<Movement, MovementsAdapter.MovementsViewHolder>(recyclerOptions) {
 
@@ -27,6 +29,10 @@ class MovementsAdapter(
         model: Movement
     ) {
         holder.bindData(model)
+
+        holder.itemView.setOnClickListener {
+            clickAction.onItemClick(model)
+        }
 
     }
 

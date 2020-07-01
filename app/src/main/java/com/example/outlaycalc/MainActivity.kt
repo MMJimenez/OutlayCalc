@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.outlaycalc.adapters.MovementsAdapter
+import com.example.outlaycalc.interfaces.CustomItemListener
 import com.example.outlaycalc.models.Movement
 import com.example.outlaycalc.models.MovementsList
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
@@ -19,7 +20,7 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 import kotlin.math.round
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CustomItemListener {
 
     lateinit var auth: FirebaseAuth
     val db = FirebaseFirestore.getInstance()
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         val mLay = LinearLayoutManager(this)
         mainRecyclerView.layoutManager = mLay
 
-        fireAdapter = MovementsAdapter(fireOptions)
+        fireAdapter = MovementsAdapter(fireOptions, this)
         mainRecyclerView.adapter = fireAdapter
 
         floating_action_button.setOnClickListener {
@@ -82,17 +83,17 @@ class MainActivity : AppCompatActivity() {
         movementQuery.get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    Log.v(TAG, "${document.id} => ${document.data}")
+//                    Log.v(TAG, "${document.id} => ${document.data}")
 
                     val movementObject = document.toObject(Movement::class.java)
-                    Log.v(TAG, "documentObject: ${movementObject.outlay.toString()}")
+//                    Log.v(TAG, "documentObject: ${movementObject.outlay.toString()}")
 
                     if (movementObject.outlay) {
                         movementObject.amount?.let { money -= it }
-                        Log.e(TAG, "Ha entrado por outlays: ${movementObject.amount} money: $money")
+//                        Log.e(TAG, "Ha entrado por outlays: ${movementObject.amount} money: $money")
                     } else {
                         movementObject.amount?.let { money += it }
-                        Log.e(TAG, "Ha entrado por ingress: ${movementObject.amount} money: $money")
+//                        Log.e(TAG, "Ha entrado por ingress: ${movementObject.amount} money: $money")
                     }
                 }
                 val roundedMoney = BigDecimal(money).setScale(2, RoundingMode.HALF_EVEN)
@@ -102,5 +103,9 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "Error getting documents: ", exception)
             }
 
+    }
+
+    override fun onItemClick(selectedMovement: Movement) {
+        Log.e(TAG, "position de onItemClick: ${selectedMovement.amount}, ${selectedMovement.description}")
     }
 }
