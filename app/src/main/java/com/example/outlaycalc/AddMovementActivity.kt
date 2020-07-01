@@ -30,7 +30,7 @@ class AddMovementActivity : AppCompatActivity() {
     }
 
     fun createMovement() {
-        var newMovement = Movement()
+        val newMovement = Movement()
         newMovement.amount = inputTxtAmount.text.toString().toFloat()
         newMovement.description = inputTxtDescription.text.toString()
         if (radioIngress.isChecked) {
