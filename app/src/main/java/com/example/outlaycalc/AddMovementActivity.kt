@@ -11,10 +11,8 @@ import kotlinx.android.synthetic.main.activity_add_movement.*
 
 class AddMovementActivity : AppCompatActivity() {
 
-    // Access a Cloud Firestore instance from your Activity
     val db = FirebaseFirestore.getInstance()
     private lateinit var auth: FirebaseAuth// ...
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

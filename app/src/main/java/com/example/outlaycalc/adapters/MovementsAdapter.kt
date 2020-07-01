@@ -1,7 +1,5 @@
 package com.example.outlaycalc.adapters
 
-
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,8 +14,6 @@ class MovementsAdapter(
     recyclerOptions: FirestoreRecyclerOptions<Movement>
 ) :
     FirestoreRecyclerAdapter<Movement, MovementsAdapter.MovementsViewHolder>(recyclerOptions) {
-
-    //var cell: EditMovements? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovementsViewHolder {
         val view =
@@ -36,7 +32,6 @@ class MovementsAdapter(
 
     inner class MovementsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-
         fun bindData(movement: Movement) {
             itemView.txtDesiption.text = movement.description
             itemView.txtAmount.text = "${movement.amount} €"
@@ -46,10 +41,6 @@ class MovementsAdapter(
             } else {
                 itemView.iconOutlay.setImageResource(R.drawable.ic_arrow_left)
             }
-
-
-
-
         }
     }
 }
