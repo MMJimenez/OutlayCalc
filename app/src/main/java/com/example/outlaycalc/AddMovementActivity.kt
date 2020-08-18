@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_add_movement.*
 class AddMovementActivity : AppCompatActivity() {
 
     val db = FirebaseFirestore.getInstance()
-    private lateinit var auth: FirebaseAuth// ...
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

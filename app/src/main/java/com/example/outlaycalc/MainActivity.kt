@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.outlaycalc.adapters.MovementsAdapter
 import com.example.outlaycalc.interfaces.CustomItemListener
 import com.example.outlaycalc.models.Movement
-import com.example.outlaycalc.models.MovementsList
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -17,8 +16,6 @@ import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_main.*
 import java.math.BigDecimal
 import java.math.RoundingMode
-import java.text.DecimalFormat
-import kotlin.math.round
 
 class MainActivity : AppCompatActivity(), CustomItemListener {
 
