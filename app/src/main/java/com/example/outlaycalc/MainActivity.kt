@@ -105,8 +105,8 @@ class MainActivity : AppCompatActivity(), CustomItemListener {
 
     }
 
-    override fun onItemClick(selectedMovement: Movement) {
+    override fun onItemClick(selectedMovement: Movement, docRef: String) {
         Log.e(TAG, "position de onItemClick: ${selectedMovement.amount}, ${selectedMovement.description}")
-        
+        Log.d("GetId", "$docRef En MainActivity")
     }
 }

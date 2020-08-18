@@ -1,6 +1,6 @@
 package com.example.outlaycalc.adapters
 
-import android.service.autofill.OnClickAction
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +31,9 @@ class MovementsAdapter(
         holder.bindData(model)
 
         holder.itemView.setOnClickListener {
-            clickAction.onItemClick(model)
+            val docId = snapshots.getSnapshot(position).id
+            Log.d("GetId", docId)
+            clickAction.onItemClick(model, docId)
         }
 
     }
