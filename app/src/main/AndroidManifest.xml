@@ -9,10 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddMovementActivity"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".MainActivity"
-            android:theme="@style/AppThemeNoActionBarr"/>
+        <activity
+            android:name=".ModMovementActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AddMovementActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppThemeNoActionBarr" />
         <activity android:name=".SingInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
