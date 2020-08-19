@@ -84,10 +84,8 @@
                 android:textSize="18sp" />
         </RadioGroup>
 
-
     </LinearLayout>
-
-
+    
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnModify"
         android:layout_width="match_parent"
@@ -96,8 +94,7 @@
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="30dp"
         android:paddingHorizontal="50dp"
-
-        android:text="Modificar" />
+        android:text="Aceptar" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnDelete"

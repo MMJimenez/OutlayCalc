@@ -11,9 +11,11 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ModMovementActivity"
+            android:label="Modifica un gasto"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AddMovementActivity"
+            android:label="Crea un gasto"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
