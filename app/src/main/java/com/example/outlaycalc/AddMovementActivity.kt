@@ -18,6 +18,7 @@ class AddMovementActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_movement)
 
+
         auth = FirebaseAuth.getInstance()
 
         title = "Añade un Nuevo Gasto"
@@ -45,6 +46,7 @@ class AddMovementActivity : AppCompatActivity() {
             .addOnCompleteListener {
                 Log.i("miApp", "datos enviados correctamente")
                 startActivity(Intent(this, MainActivity::class.java))
+                finish()
             }
     }
 }

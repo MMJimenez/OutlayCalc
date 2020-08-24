@@ -100,6 +100,7 @@ class ModMovementActivity : AppCompatActivity() {
         docPath.delete()
             .addOnCompleteListener {
                 startActivity(Intent(this, MainActivity::class.java))
+                finish()
             }
     }
 
