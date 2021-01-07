@@ -8,12 +8,17 @@
     android:orientation="vertical"
     tools:context=".CalendarActivity">
 
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/testButton"/>
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/monthName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="25dp"
-        android:text="January"
+        android:text="December 2021"
         android:textSize="22sp"
         android:textStyle="bold" />
 
@@ -29,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Monday"
+            android:text="MON"
             android:textAlignment="center"
             android:paddingHorizontal="1dp"/>
 
@@ -39,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Tuesday"
+            android:text="TUE"
             android:textAlignment="center"
             android:paddingHorizontal="1dp"/>
 
@@ -50,7 +55,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Wenesday"
+            android:text="WEN"
             android:textAlignment="center" />
 
         <TextView
@@ -60,7 +65,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Thursday"
+            android:text="THU"
             android:textAlignment="center" />
 
         <TextView
@@ -70,7 +75,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Friday"
+            android:text="FRI"
             android:textAlignment="center" />
 
         <TextView
@@ -80,7 +85,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Saturday"
+            android:text="SAT"
             android:textAlignment="center" />
 
         <TextView
@@ -90,7 +95,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Sunday"
+            android:text="SUN"
             android:textAlignment="center" />
 
     </LinearLayout>

@@ -30,6 +30,10 @@ class MainActivity : AppCompatActivity(), CustomItemListener {
 
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
+                R.id.calendar -> {
+                    startActivity(Intent(this, CalendarActivity::class.java))
+                    true
+                }
                 R.id.menuLogOut -> {
                     FirebaseAuth.getInstance().signOut()
                     startActivity(Intent(this, SingInActivity::class.java))
