@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".CalendarFragment">
+    android:orientation="vertical">
 
     <DatePicker
         android:id="@+id/calendarPicker"
@@ -25,7 +24,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
             android:text="Aceptar"
-            android:textColor="@color/black" />
+            android:textColor="@color/colorDarkGrey" />
 
         <Button
             android:id="@+id/cancelBtn"
@@ -34,7 +33,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
             android:text="Cancelar"
-            android:textColor="@color/black" />
+            android:textColor="@color/colorDarkGrey" />
 
 
     </LinearLayout>

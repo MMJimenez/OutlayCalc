@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.DatePicker
+import android.widget.EditText
 import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
@@ -13,6 +14,10 @@ import com.example.outlaycalc.models.Movement
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_add_movement.*
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class AddMovementActivity : AppCompatActivity() {
 
@@ -29,6 +34,12 @@ class AddMovementActivity : AppCompatActivity() {
         title = "Añade un Nuevo Gasto"
 
         val query = db.collection("users").document(auth.currentUser!!.uid).collection("movements")
+
+        val editTextDate = findViewById<EditText>(R.id.inputTxtDate)
+
+        editTextDate.setOnClickListener {
+            showDialog()
+        }
 
         btnAdd.setOnClickListener {
             createMovement()
@@ -55,6 +66,24 @@ class AddMovementActivity : AppCompatActivity() {
             }
     }
 
+    fun formattedDate(unformattedDate: LocalDate): String {
+        val pattern = "dd-MM-yyyy"
+        val simpleDateFormat = SimpleDateFormat(pattern)
+        val formatedDate = simpleDateFormat.format(unformattedDate)
+        return formatedDate
+    }
+
+    fun stringToDate(dateOnString: String): LocalDate {
+        // Format y-M-d or yyyy-MM-d
+        val string = "2017-07-25"
+        val dateOnDate = LocalDate.parse(string, DateTimeFormatter.ISO_DATE)
+        return dateOnDate
+    }
+
+        fun showDate() {
+
+    }
+
     fun showDialog() {
         val dialog = MaterialDialog(this)
             .noAutoDismiss()
@@ -69,7 +98,7 @@ class AddMovementActivity : AppCompatActivity() {
             val selectedDay = calendar.dayOfMonth
             val selectedMonth = calendar.month
             val selectedYear = calendar.year
-            changeDate(selectedDay, selectedMonth, selectedYear)
+            //changeDate(selectedDay, selectedMonth, selectedYear)
             Log.v("miapp", "el dia del mes es: $selectedDay")
             dialog.dismiss()
 
@@ -80,11 +109,5 @@ class AddMovementActivity : AppCompatActivity() {
         }
 
         dialog.show()
-    }
-
-    fun changeDate(day: Int, monthArray: Int, year: Int) {
-        val dateTextView2 = findViewById<TextView>(R.id.dateText2)
-        val month = monthArray + 1
-        dateTextView2.text = "$day-$month-$year"
     }
 }
