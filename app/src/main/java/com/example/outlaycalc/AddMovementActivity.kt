@@ -42,7 +42,7 @@ class AddMovementActivity : AppCompatActivity() {
 
         val editTextDate = findViewById<EditText>(R.id.inputTxtDate)
         val today = Date()
-        showDate(formattedDate(today))
+        showDate(dateToString(today))
 
         editTextDate.setOnClickListener {
             showDialog()
@@ -57,19 +57,17 @@ class AddMovementActivity : AppCompatActivity() {
         val newMovement = Movement()
         newMovement.amount = inputTxtAmount.text.toString().toFloat()
         newMovement.description = inputTxtDescription.text.toString()
-        newMovement.date = stringToDate(inputTxtDate.text.toString())
-
-        //PRUEBA DE newMovement.date
-        val movementDate = stringToDate(inputTxtDate.text.toString())
-        Log.v("miapp", "La fecha del mov es $movementDate")
-
+//        Get Date
+        val dateString = inputTxtDate.getText().toString()
+//        val date = stringToDate(dateString)
+//        newMovement.date = date
 
         if (radioIngress.isChecked) {
             newMovement.outlay = false
         }
         Log.v(
             "miapp",
-            "createMovement: ${newMovement.amount}, ${newMovement.description}, ${newMovement.outlay}"
+            "createMovement: ${newMovement.amount}, ${newMovement.description}, ${newMovement.outlay}, $dateString"
         )
         db.collection("users").document(auth.currentUser?.uid!!).collection("movements")
             .add(newMovement)
@@ -80,7 +78,7 @@ class AddMovementActivity : AppCompatActivity() {
             }
     }
 
-    fun formattedDate(unformattedDate: Date): String {
+    fun dateToString(unformattedDate: Date): String {
         val pattern = "dd/MM/yyyy"
         val simpleDateFormat = SimpleDateFormat(pattern)
         val formatedDate = simpleDateFormat.format(unformattedDate)
@@ -93,7 +91,7 @@ class AddMovementActivity : AppCompatActivity() {
         val defaultZoneId = ZoneId.systemDefault()
         val dateOnLocalDate = LocalDate.parse(dateOnString, DateTimeFormatter.ISO_DATE)
         val dateOnDate = Date.from(dateOnLocalDate.atStartOfDay(defaultZoneId).toInstant())
-
+        
         return dateOnDate
     }
 
