@@ -57,17 +57,14 @@ class AddMovementActivity : AppCompatActivity() {
         val newMovement = Movement()
         newMovement.amount = inputTxtAmount.text.toString().toFloat()
         newMovement.description = inputTxtDescription.text.toString()
-//        Get Date
-        val dateString = inputTxtDate.getText().toString()
-//        val date = stringToDate(dateString)
-//        newMovement.date = date
+        newMovement.date = stringToDate(inputTxtDate.getText().toString())
 
         if (radioIngress.isChecked) {
             newMovement.outlay = false
         }
         Log.v(
             "miapp",
-            "createMovement: ${newMovement.amount}, ${newMovement.description}, ${newMovement.outlay}, $dateString"
+            "createMovement: ${newMovement.amount}, ${newMovement.description}, ${newMovement.outlay}, ${newMovement.date}"
         )
         db.collection("users").document(auth.currentUser?.uid!!).collection("movements")
             .add(newMovement)
@@ -87,11 +84,14 @@ class AddMovementActivity : AppCompatActivity() {
     }
 
     fun stringToDate(dateOnString: String): Date {
-        // Format y-M-d or yyyy-MM-d
+
         val defaultZoneId = ZoneId.systemDefault()
-        val dateOnLocalDate = LocalDate.parse(dateOnString, DateTimeFormatter.ISO_DATE)
+
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH)
+        val dateOnLocalDate = LocalDate.parse(dateOnString, formatter)
+
         val dateOnDate = Date.from(dateOnLocalDate.atStartOfDay(defaultZoneId).toInstant())
-        
+
         return dateOnDate
     }
 
