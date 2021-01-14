@@ -1,5 +1,6 @@
 package com.example.outlaycalc.models
 
+import java.time.LocalDate
 import java.util.*
 
 class Movement {
