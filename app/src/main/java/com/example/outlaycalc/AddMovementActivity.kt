@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
@@ -41,6 +42,9 @@ class AddMovementActivity : AppCompatActivity() {
         val query = db.collection("users").document(auth.currentUser!!.uid).collection("movements")
 
         val editTextDate = findViewById<EditText>(R.id.inputTxtDate)
+        editTextDate.showSoftInputOnFocus = false
+
+
         val today = Date()
         showDate(dateToString(today))
 
@@ -116,7 +120,8 @@ class AddMovementActivity : AppCompatActivity() {
             val selectedDay = calendar.dayOfMonth
             val selectedMonth = calendar.month
             val selectedYear = calendar.year
-            //changeDate(selectedDay, selectedMonth, selectedYear)
+
+            //ESTO ABRIA QUE CAMBIARLO
             val month = selectedMonth + 1
             val selectedDate = "$selectedDay/$month/$selectedYear"
             Log.v("miapp", "el dia del mes es: $selectedDate")

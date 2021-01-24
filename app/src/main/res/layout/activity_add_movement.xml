@@ -60,14 +60,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="30dp"
-                android:hint="Fecha">
+                android:hint="Fecha"
+                android:enabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/inputTxtDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorDarkGrey"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
