@@ -109,6 +109,5 @@ class MainActivity : AppCompatActivity(), CustomItemListener {
         val intent = (Intent(this, EditMovementActivity::class.java))
         intent.putExtra("intentDocRef", docRef)
         startActivity(intent)
-        finish()
     }
 }
