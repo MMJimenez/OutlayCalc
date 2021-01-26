@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="8"
         android:orientation="vertical">
-
+        
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtAmount"
             android:layout_width="match_parent"
