@@ -61,7 +61,7 @@ class MovementsAdapter(
     }
 
     fun dateToString(unformattedDate: Date): String {
-        val pattern = "dd/MM/yyyy"
+        val pattern = "dd MMM yy"
         val simpleDateFormat = SimpleDateFormat(pattern)
         val formatedDate = simpleDateFormat.format(unformattedDate)
 
