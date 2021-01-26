@@ -6,10 +6,16 @@ import android.os.Bundle
 import android.util.Log
 import com.example.outlaycalc.models.Movement
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_edit_movement.*
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import android.widget.EditText
 import java.util.*
 
 class EditMovementActivity : AppCompatActivity() {
@@ -22,6 +28,9 @@ class EditMovementActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_movement)
+
+//        var modInputTxtDate = findViewById<EditText>(R.id.inputTxtDate)
+//        modInputTxtDate.showSoftInputOnFocus = false
 
         auth = FirebaseAuth.getInstance()
 
@@ -65,10 +74,12 @@ class EditMovementActivity : AppCompatActivity() {
             }
     }
 
-    private fun printMovementData(modMovement: Movement) {
+     fun printMovementData(modMovement: Movement) {
 
         modInputTxtAmount.setText(modMovement.amount.toString())
         modInputTxtDescription.setText(modMovement.description)
+//        modInputTxtDate.setText(dateToString(modMovement.date))
+
 
         if (modMovement.outlay) {
             modRadioOutlay.isChecked = true
@@ -113,6 +124,26 @@ class EditMovementActivity : AppCompatActivity() {
                 deleteMovement(docPath)
             }
             .show()
+    }
+
+    fun dateToString(unformattedDate: Date): String {
+        val pattern = "dd/MM/yyyy"
+        val simpleDateFormat = SimpleDateFormat(pattern)
+        val formatedDate = simpleDateFormat.format(unformattedDate)
+
+        return formatedDate
+    }
+
+    fun stringToDate(dateOnString: String): Date {
+
+        val defaultZoneId = ZoneId.systemDefault()
+
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH)
+        val dateOnLocalDate = LocalDate.parse(dateOnString, formatter)
+
+        val dateOnDate = Date.from(dateOnLocalDate.atStartOfDay(defaultZoneId).toInstant())
+
+        return dateOnDate
     }
 
 }
