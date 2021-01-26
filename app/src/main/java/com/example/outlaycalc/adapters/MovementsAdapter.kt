@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.item_movement.view.iconOutlay
 import kotlinx.android.synthetic.main.item_movement.view.txtAmount
 import kotlinx.android.synthetic.main.item_movement.view.txtDesiption
 import kotlinx.android.synthetic.main.item_movement_3.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MovementsAdapter(
     recyclerOptions: FirestoreRecyclerOptions<Movement>, val clickAction: CustomItemListener
@@ -45,9 +47,10 @@ class MovementsAdapter(
     inner class MovementsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bindData(movement: Movement) {
+
             itemView.txtDesiption.text = movement.description
             itemView.txtAmount.text = "${movement.amount} €"
-            itemView.txtDate.text = movement.date.toString()
+            itemView.txtDate.text = dateToString(movement.date)
 
             if (!movement.outlay) {
                 itemView.iconOutlay.setImageResource(R.drawable.ic_arrow_right)
@@ -55,5 +58,13 @@ class MovementsAdapter(
                 itemView.iconOutlay.setImageResource(R.drawable.ic_arrow_left)
             }
         }
+    }
+
+    fun dateToString(unformattedDate: Date): String {
+        val pattern = "dd/MM/yyyy"
+        val simpleDateFormat = SimpleDateFormat(pattern)
+        val formatedDate = simpleDateFormat.format(unformattedDate)
+
+        return formatedDate
     }
 }
