@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity(), CustomItemListener {
         Log.e(TAG, "position de onItemClick: ${selectedMovement.amount}, ${selectedMovement.description}")
         Log.d("GetId", "$docRef En MainActivity")
 
-        val intent = (Intent(this, ModMovementActivity::class.java))
+        val intent = (Intent(this, EditMovementActivity::class.java))
         intent.putExtra("intentDocRef", docRef)
         startActivity(intent)
         finish()

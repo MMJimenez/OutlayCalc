@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ModMovementActivity"
+            android:name=".EditMovementActivity"
             android:label="Modifica un gasto"
             android:parentActivityName=".MainActivity" />
         <activity

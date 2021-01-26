@@ -9,14 +9,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_add_movement.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_mod_movement.*
-import java.math.BigDecimal
-import java.math.RoundingMode
+import kotlinx.android.synthetic.main.activity_edit_movement.*
 import java.util.*
 
-class ModMovementActivity : AppCompatActivity() {
+class EditMovementActivity : AppCompatActivity() {
 
     val TAG = "recivedDoc"
 
@@ -25,7 +21,7 @@ class ModMovementActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mod_movement)
+        setContentView(R.layout.activity_edit_movement)
 
         auth = FirebaseAuth.getInstance()
 
@@ -38,6 +34,7 @@ class ModMovementActivity : AppCompatActivity() {
             getMovement(it)
         }
     }
+
 
     private fun getMovement(docId: String) {
         val movementToModify =
