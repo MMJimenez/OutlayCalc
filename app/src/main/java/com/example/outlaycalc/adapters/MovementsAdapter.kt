@@ -11,6 +11,10 @@ import com.example.outlaycalc.models.Movement
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.synthetic.main.item_movement.view.*
+import kotlinx.android.synthetic.main.item_movement.view.iconOutlay
+import kotlinx.android.synthetic.main.item_movement.view.txtAmount
+import kotlinx.android.synthetic.main.item_movement.view.txtDesiption
+import kotlinx.android.synthetic.main.item_movement_3.view.*
 
 class MovementsAdapter(
     recyclerOptions: FirestoreRecyclerOptions<Movement>, val clickAction: CustomItemListener
@@ -19,7 +23,7 @@ class MovementsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovementsViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_movement, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_movement_3, parent, false)
         return MovementsViewHolder(view)
     }
 
@@ -43,6 +47,7 @@ class MovementsAdapter(
         fun bindData(movement: Movement) {
             itemView.txtDesiption.text = movement.description
             itemView.txtAmount.text = "${movement.amount} €"
+            itemView.txtDate.text = movement.date.toString()
 
             if (!movement.outlay) {
                 itemView.iconOutlay.setImageResource(R.drawable.ic_arrow_right)
