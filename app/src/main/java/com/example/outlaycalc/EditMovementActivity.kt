@@ -25,12 +25,15 @@ class EditMovementActivity : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance()
     private lateinit var auth: FirebaseAuth
 
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_movement)
 
-//        var modInputTxtDate = findViewById<EditText>(R.id.inputTxtDate)
-//        modInputTxtDate.showSoftInputOnFocus = false
+        modInputTxtDate.showSoftInputOnFocus = false
+
 
         auth = FirebaseAuth.getInstance()
 
@@ -78,8 +81,7 @@ class EditMovementActivity : AppCompatActivity() {
 
         modInputTxtAmount.setText(modMovement.amount.toString())
         modInputTxtDescription.setText(modMovement.description)
-//        modInputTxtDate.setText(dateToString(modMovement.date))
-
+        modInputTxtDate.setText(dateToString(modMovement.date))
 
         if (modMovement.outlay) {
             modRadioOutlay.isChecked = true

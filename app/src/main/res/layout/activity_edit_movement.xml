@@ -63,7 +63,7 @@
                 android:enabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputTxtDate"
+                    android:id="@+id/modInputTxtDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorDarkGrey"
