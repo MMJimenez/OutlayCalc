@@ -116,9 +116,7 @@ class AddMovementActivity : AppCompatActivity() {
             val selectedMonth = calendar.month
             val selectedYear = calendar.year
 
-            //ESTO ABRIA QUE CAMBIARLO
-            val month = selectedMonth + 1
-            val selectedDate = "$selectedDay/$month/$selectedYear"
+            val selectedDate = "${formatday(selectedDay)}/${arrayMonthToMonth(selectedMonth)}/$selectedYear"
             Log.v("miapp", "el dia del mes es: $selectedDate")
 
             inputTxtDate.setText(selectedDate)
@@ -132,5 +130,34 @@ class AddMovementActivity : AppCompatActivity() {
         }
 
         dialog.show()
+    }
+
+    fun arrayMonthToMonth(arrayMonth: Int): String {
+        var month: String
+        when (arrayMonth) {
+            0 -> month = "01"
+            1 -> month = "02"
+            2 -> month = "03"
+            3 -> month = "04"
+            4 -> month = "05"
+            5 -> month = "06"
+            6 -> month = "07"
+            7 -> month = "08"
+            8 -> month = "09"
+            9 -> month = "10"
+            10 -> month = "11"
+            else -> { month = "12"
+            }
+        }
+        return month
+    }
+
+    fun formatday(day: Int): String {
+        var dayformatted = day.toString()
+        if (dayformatted.length == 1) {
+            dayformatted = "0$dayformatted"
+        }
+
+        return dayformatted
     }
 }

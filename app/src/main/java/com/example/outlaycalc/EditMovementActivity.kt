@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.DatePicker
 import com.example.outlaycalc.models.Movement
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -17,10 +16,8 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
-import android.widget.EditText
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
-import kotlinx.android.synthetic.main.activity_add_movement.*
 import java.util.*
 
 class EditMovementActivity : AppCompatActivity() {
@@ -29,8 +26,6 @@ class EditMovementActivity : AppCompatActivity() {
 
     val db = FirebaseFirestore.getInstance()
     private lateinit var auth: FirebaseAuth
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,7 +79,7 @@ class EditMovementActivity : AppCompatActivity() {
             }
     }
 
-     fun printMovementData(modMovement: Movement) {
+    fun printMovementData(modMovement: Movement) {
 
         modInputTxtAmount.setText(modMovement.amount.toString())
         modInputTxtDescription.setText(modMovement.description)
@@ -103,12 +98,16 @@ class EditMovementActivity : AppCompatActivity() {
         modMovement.amount = modInputTxtAmount.text.toString().toFloat()
         modMovement.description = modInputTxtDescription.text.toString()
         modMovement.date = stringToDate(modInputTxtDate.text.toString())
+
         if (modRadioIngress.isChecked) {
             modMovement.outlay = false
         }
         docPath.set(modMovement)
             .addOnCompleteListener {
-                Log.i("miApp", "ha modificado datos correctamente ${modMovement.amount.toString()}, ${modMovement.description}, ${modMovement.date}")
+                Log.i(
+                    "miApp",
+                    "ha modificado datos correctamente ${modMovement.amount.toString()}, ${modMovement.description}, ${modMovement.date}"
+                )
                 startActivity(Intent(this, MainActivity::class.java))
             }
     }
@@ -170,7 +169,7 @@ class EditMovementActivity : AppCompatActivity() {
             val selectedMonth = calendar.month
             val selectedYear = calendar.year
 
-            val selectedDate = "$selectedDay/${arrayMonthToMonth(selectedMonth)}/$selectedYear"
+            val selectedDate = "${formatday(selectedDay)}/${formatMonth(selectedMonth)}/$selectedYear"
             Log.v("miapp", "el dia del mes es: $selectedDate")
 
             modInputTxtDate.setText(selectedDate)
@@ -186,7 +185,7 @@ class EditMovementActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    fun arrayMonthToMonth(arrayMonth: Int): String {
+    fun formatMonth(arrayMonth: Int): String {
         var month: String
         when (arrayMonth) {
             0 -> month = "01"
@@ -200,10 +199,20 @@ class EditMovementActivity : AppCompatActivity() {
             8 -> month = "09"
             9 -> month = "10"
             10 -> month = "11"
-            else -> { month = "12"
+            else -> {
+                month = "12"
             }
         }
         return month
+    }
+
+    fun formatday(day: Int): String {
+        var dayformatted = day.toString()
+        if (dayformatted.length == 1) {
+            dayformatted = "0$dayformatted"
+        }
+
+        return dayformatted
     }
 
 }
