@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.DatePicker
 import com.example.outlaycalc.models.Movement
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
@@ -16,6 +18,9 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import android.widget.EditText
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
+import kotlinx.android.synthetic.main.activity_add_movement.*
 import java.util.*
 
 class EditMovementActivity : AppCompatActivity() {
@@ -33,8 +38,10 @@ class EditMovementActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_movement)
 
         modInputTxtDate.showSoftInputOnFocus = false
-
-
+        modInputTxtDate.setOnClickListener {
+            showDialog()
+        }
+        
         auth = FirebaseAuth.getInstance()
 
         val bundle: Bundle? = intent.extras
@@ -95,13 +102,13 @@ class EditMovementActivity : AppCompatActivity() {
         val modMovement = Movement()
         modMovement.amount = modInputTxtAmount.text.toString().toFloat()
         modMovement.description = modInputTxtDescription.text.toString()
-        modMovement.date = dateOfMovement
+        modMovement.date = stringToDate(modInputTxtDate.text.toString())
         if (modRadioIngress.isChecked) {
             modMovement.outlay = false
         }
         docPath.set(modMovement)
             .addOnCompleteListener {
-                Log.i("miApp", "ha modificado datos correctamente")
+                Log.i("miApp", "ha modificado datos correctamente ${modMovement.amount.toString()}, ${modMovement.description}, ${modMovement.date}")
                 startActivity(Intent(this, MainActivity::class.java))
             }
     }
@@ -146,6 +153,39 @@ class EditMovementActivity : AppCompatActivity() {
         val dateOnDate = Date.from(dateOnLocalDate.atStartOfDay(defaultZoneId).toInstant())
 
         return dateOnDate
+    }
+
+    fun showDialog() {
+        val dialog = MaterialDialog(this)
+            .noAutoDismiss()
+            .customView(R.layout.fragment_calendar)
+
+        //set preferences
+        val calendar = dialog.findViewById<DatePicker>(R.id.calendarPicker)
+        val acceptBtn = dialog.findViewById<Button>(R.id.acceptBtn)
+        val cancelBtn = dialog.findViewById<Button>(R.id.cancelBtn)
+
+        acceptBtn.setOnClickListener() {
+            val selectedDay = calendar.dayOfMonth
+            val selectedMonth = calendar.month
+            val selectedYear = calendar.year
+
+            //ESTO ABRIA QUE CAMBIARLO
+            val month = selectedMonth + 1
+            val selectedDate = "$selectedDay/$month/$selectedYear"
+            Log.v("miapp", "el dia del mes es: $selectedDate")
+
+            modInputTxtDate.setText(selectedDate)
+
+            dialog.dismiss()
+
+        }
+
+        cancelBtn.setOnClickListener() {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
 }
