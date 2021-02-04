@@ -75,7 +75,7 @@ class AddMovementActivity : AppCompatActivity() {
     }
 
     fun dateToString(unformattedDate: Date): String {
-        val pattern = "dd/MM/yyyy"
+        val pattern = "dd / MM / yyyy"
         val simpleDateFormat = SimpleDateFormat(pattern)
         val formatedDate = simpleDateFormat.format(unformattedDate)
 
@@ -86,7 +86,7 @@ class AddMovementActivity : AppCompatActivity() {
 
         val defaultZoneId = ZoneId.systemDefault()
 
-        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH)
+        val formatter = DateTimeFormatter.ofPattern("dd / MM / yyyy", Locale.ENGLISH)
         val dateOnLocalDate = LocalDate.parse(dateOnString, formatter)
 
         val dateOnDate = Date.from(dateOnLocalDate.atStartOfDay(defaultZoneId).toInstant())
