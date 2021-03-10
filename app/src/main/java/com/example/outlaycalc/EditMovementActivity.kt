@@ -37,6 +37,7 @@ class EditMovementActivity : AppCompatActivity() {
             showDialog()
         }
 
+
         auth = FirebaseAuth.getInstance()
 
         val bundle: Bundle? = intent.extras
